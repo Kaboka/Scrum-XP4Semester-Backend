@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 @Entity
 @Table(name = "SUBJECT")
@@ -65,6 +66,7 @@ public class Subject implements Serializable {
     }
 
     @XmlTransient
+    @JsonIgnore
     public Collection<Student> getStudentCollection() {
         return studentCollection;
     }
@@ -74,6 +76,7 @@ public class Subject implements Serializable {
     }
 
     @XmlTransient
+    @JsonIgnore
     public Collection<Student> getStudentCollection1() {
         return studentCollection1;
     }
@@ -83,6 +86,7 @@ public class Subject implements Serializable {
     }
 
     @XmlTransient
+    @JsonIgnore
     public Collection<Student> getStudentCollection2() {
         return studentCollection2;
     }
@@ -92,6 +96,7 @@ public class Subject implements Serializable {
     }
 
     @XmlTransient
+    @JsonIgnore
     public Collection<Student> getStudentCollection3() {
         return studentCollection3;
     }
