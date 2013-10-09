@@ -20,7 +20,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Student.findAll", query = "SELECT s FROM Student s"),
     @NamedQuery(name = "Student.findById", query = "SELECT s FROM Student s WHERE s.id = :id"),
-    @NamedQuery(name = "Student.findByFullName", query = "SELECT s FROM Student s WHERE s.fullName = :fullName")})
+    @NamedQuery(name = "Student.findByFullName", query = "SELECT s FROM Student s WHERE s.fullName = :fullName"),
+    @NamedQuery(name = "Student.findByFronter", query = "SELECT s FROM Student s WHERE s.fronter = :fronter")})
 public class Student implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -31,6 +32,9 @@ public class Student implements Serializable {
     @Size(max = 50)
     @Column(name = "FULL_NAME")
     private String fullName;
+    @Size(max = 8)
+    @Column(name = "FRONTER")
+    private String fronter;
     @JoinColumn(name = "FIRST_PRIO_1", referencedColumnName = "ID")
     @ManyToOne
     private Subject firstPrio1;
@@ -98,6 +102,16 @@ public class Student implements Serializable {
     public void setSecondPrio2(Subject secondPrio2) {
         this.secondPrio2 = secondPrio2;
     }
+
+    public String getFronter() {
+        return fronter;
+    }
+
+    public void setFronter(String fronter) {
+        this.fronter = fronter;
+    }
+    
+    
 
     @Override
     public int hashCode() {

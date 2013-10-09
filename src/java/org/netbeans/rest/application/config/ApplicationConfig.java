@@ -18,8 +18,9 @@ public class ApplicationConfig extends Application {
         Set<Class<?>> resources = new java.util.HashSet<Class<?>>();
         resources.add(service.StudentFacadeREST.class);
         resources.add(service.SubjectFacadeREST.class);
+        // following code can be used to customize Jersey 1.x JSON provider:
         try {
-            Class<?> jacksonProvider = Class.forName("org.codehaus.jackson.jaxrs.JacksonJsonProvider");
+            Class jacksonProvider = Class.forName("org.codehaus.jackson.jaxrs.JacksonJsonProvider");
             resources.add(jacksonProvider);
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(getClass().getName()).log(java.util.logging.Level.SEVERE, null, ex);

@@ -47,8 +47,9 @@ public class StudentFacadeREST extends AbstractFacade<Student> {
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-    public Student find(@PathParam("id") Integer id) {
-        return super.find(id);
+    public Student find(@PathParam("id") String id) {
+        //return super.find(id);
+        return (Student)em.createNamedQuery("Student.findByFronter").setParameter("fronter", id).getSingleResult();
     }
 
     @GET

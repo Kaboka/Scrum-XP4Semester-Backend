@@ -47,8 +47,8 @@ public class SubjectFacadeREST extends AbstractFacade<Subject> {
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-    public Subject find(@PathParam("id") Integer id) {
-        return super.find(id);
+    public Subject find(@PathParam("id") String id) {
+        return (Subject) em.createNamedQuery("Subject.findByName").setParameter("name",id).getSingleResult();
     }
 
     @GET
