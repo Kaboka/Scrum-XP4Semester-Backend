@@ -16,13 +16,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
+/**
+ *
+ * @author Benjamin I
+ */
 @Entity
 @Table(name = "SUBJECT")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Subject.findAll", query = "SELECT s FROM Subject s"),
     @NamedQuery(name = "Subject.findById", query = "SELECT s FROM Subject s WHERE s.id = :id"),
-    @NamedQuery(name = "Subject.findByName", query = "SELECT s FROM Subject s WHERE s.name = :name")})
+    @NamedQuery(name = "Subject.findByName", query = "SELECT s FROM Subject s WHERE s.name = :name"),
+    @NamedQuery(name = "Subject.findByPool", query = "SELECT s FROM Subject s WHERE s.pool = :pool")})
 public class Subject implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -33,6 +38,8 @@ public class Subject implements Serializable {
     @Size(max = 30)
     @Column(name = "NAME")
     private String name;
+    @Column(name = "POOL")
+    private int pool;
     @OneToMany(mappedBy = "firstPrio1")
     private Collection<Student> studentCollection;
     @OneToMany(mappedBy = "firstPrio2")
@@ -63,6 +70,14 @@ public class Subject implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getPool() {
+        return pool;
+    }
+
+    public void setPool(int pool) {
+        this.pool = pool;
     }
 
     @XmlTransient
